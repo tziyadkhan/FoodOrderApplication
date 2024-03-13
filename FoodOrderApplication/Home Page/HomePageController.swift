@@ -17,7 +17,6 @@ class HomePageController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-//        layout.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 20, right: 0)
  
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.dataSource = self

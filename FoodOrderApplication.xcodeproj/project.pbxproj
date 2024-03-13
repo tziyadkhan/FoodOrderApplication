@@ -43,6 +43,7 @@
 		90726CFE2B9F71CA007E7FB3 /* RestaurantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90726CFD2B9F71CA007E7FB3 /* RestaurantsCell.swift */; };
 		909E0BDB2BA05D6600635A34 /* RestaurantInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909E0BDA2BA05D6600635A34 /* RestaurantInfoController.swift */; };
 		90BD7EFD2BA17960000A66AA /* MealsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD7EFC2BA17960000A66AA /* MealsPageController.swift */; };
+		90BD7EFF2BA17CD9000A66AA /* MealsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD7EFE2BA17CD9000A66AA /* MealsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -80,6 +81,7 @@
 		90726CFD2B9F71CA007E7FB3 /* RestaurantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCell.swift; sourceTree = "<group>"; };
 		909E0BDA2BA05D6600635A34 /* RestaurantInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoController.swift; sourceTree = "<group>"; };
 		90BD7EFC2BA17960000A66AA /* MealsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPageController.swift; sourceTree = "<group>"; };
+		90BD7EFE2BA17CD9000A66AA /* MealsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 			isa = PBXGroup;
 			children = (
 				90726CFD2B9F71CA007E7FB3 /* RestaurantsCell.swift */,
+				90BD7EFE2BA17CD9000A66AA /* MealsCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				90173D7B2B9F3D3800DFD901 /* ReusableImageView.swift in Sources */,
 				90173D6D2B9F3A4900DFD901 /* BasketPageController.swift in Sources */,
 				90173D662B9F396300DFD901 /* Coordinator.swift in Sources */,
+				90BD7EFF2BA17CD9000A66AA /* MealsCell.swift in Sources */,
 				90173D3D2B9F378200DFD901 /* RegistrationPageController.swift in Sources */,
 				90173D402B9F379E00DFD901 /* TabBarController.swift in Sources */,
 				909E0BDB2BA05D6600635A34 /* RestaurantInfoController.swift in Sources */,
