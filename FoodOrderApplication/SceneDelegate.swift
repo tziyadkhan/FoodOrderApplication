@@ -27,7 +27,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
 
-
     func homePage(windowScene: UIWindowScene) {
         let navigationController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navigationController)

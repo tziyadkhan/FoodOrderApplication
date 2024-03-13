@@ -40,9 +40,9 @@
 		90173D7F2B9F3D3800DFD901 /* ReusableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90173D782B9F3D3800DFD901 /* ReusableLabel.swift */; };
 		90173D802B9F3D3800DFD901 /* ReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90173D792B9F3D3800DFD901 /* ReusableView.swift */; };
 		90173D812B9F3D3800DFD901 /* ReusableAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90173D7A2B9F3D3800DFD901 /* ReusableAlert.swift */; };
-		902AD8412BA06A72008ED07E /* MealViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 902AD8402BA06A72008ED07E /* MealViewController.swift */; };
 		90726CFE2B9F71CA007E7FB3 /* RestaurantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90726CFD2B9F71CA007E7FB3 /* RestaurantsCell.swift */; };
 		909E0BDB2BA05D6600635A34 /* RestaurantInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 909E0BDA2BA05D6600635A34 /* RestaurantInfoController.swift */; };
+		90BD7EFD2BA17960000A66AA /* MealsPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90BD7EFC2BA17960000A66AA /* MealsPageController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -77,9 +77,9 @@
 		90173D782B9F3D3800DFD901 /* ReusableLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableLabel.swift; sourceTree = "<group>"; };
 		90173D792B9F3D3800DFD901 /* ReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableView.swift; sourceTree = "<group>"; };
 		90173D7A2B9F3D3800DFD901 /* ReusableAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReusableAlert.swift; sourceTree = "<group>"; };
-		902AD8402BA06A72008ED07E /* MealViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealViewController.swift; sourceTree = "<group>"; };
 		90726CFD2B9F71CA007E7FB3 /* RestaurantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantsCell.swift; sourceTree = "<group>"; };
 		909E0BDA2BA05D6600635A34 /* RestaurantInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantInfoController.swift; sourceTree = "<group>"; };
+		90BD7EFC2BA17960000A66AA /* MealsPageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealsPageController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,11 +116,11 @@
 		90173D222B9F355C00DFD901 /* FoodOrderApplication */ = {
 			isa = PBXGroup;
 			children = (
-				902AD83F2BA06A64008ED07E /* Meal Page */,
 				90173D372B9F374500DFD901 /* Authentication */,
 				90173D412B9F37AD00DFD901 /* Home Page */,
 				909E0BD92BA05D4000635A34 /* Restaurant Info */,
 				90173D692B9F3A1900DFD901 /* Basket Page */,
+				902AD83F2BA06A64008ED07E /* Meal List Page */,
 				90726CFC2B9F7160007E7FB3 /* Cells */,
 				90173D542B9F387000DFD901 /* Animations */,
 				90173D3E2B9F378600DFD901 /* Tab Bar  */,
@@ -241,12 +241,12 @@
 			path = "Reusable UI Elements";
 			sourceTree = "<group>";
 		};
-		902AD83F2BA06A64008ED07E /* Meal Page */ = {
+		902AD83F2BA06A64008ED07E /* Meal List Page */ = {
 			isa = PBXGroup;
 			children = (
-				902AD8402BA06A72008ED07E /* MealViewController.swift */,
+				90BD7EFC2BA17960000A66AA /* MealsPageController.swift */,
 			);
-			path = "Meal Page";
+			path = "Meal List Page";
 			sourceTree = "<group>";
 		};
 		90726CFC2B9F7160007E7FB3 /* Cells */ = {
@@ -363,6 +363,7 @@
 				909E0BDB2BA05D6600635A34 /* RestaurantInfoController.swift in Sources */,
 				90173D4E2B9F383400DFD901 /* Meal.swift in Sources */,
 				90173D4D2B9F383400DFD901 /* Restaurant.swift in Sources */,
+				90BD7EFD2BA17960000A66AA /* MealsPageController.swift in Sources */,
 				90173D262B9F355C00DFD901 /* SceneDelegate.swift in Sources */,
 				90173D802B9F3D3800DFD901 /* ReusableView.swift in Sources */,
 				90173D452B9F37EE00DFD901 /* HomePageController.swift in Sources */,
@@ -371,7 +372,6 @@
 				90726CFE2B9F71CA007E7FB3 /* RestaurantsCell.swift in Sources */,
 				90173D4C2B9F383400DFD901 /* Purchase.swift in Sources */,
 				90173D7D2B9F3D3800DFD901 /* ReusableTextField.swift in Sources */,
-				902AD8412BA06A72008ED07E /* MealViewController.swift in Sources */,
 				90173D7F2B9F3D3800DFD901 /* ReusableLabel.swift in Sources */,
 				90173D7E2B9F3D3800DFD901 /* ReusableStackView.swift in Sources */,
 				90173D502B9F383400DFD901 /* User.swift in Sources */,

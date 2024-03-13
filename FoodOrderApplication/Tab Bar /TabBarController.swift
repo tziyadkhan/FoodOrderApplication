@@ -18,6 +18,8 @@ class TabBarController: UITabBarController {
     }
     
     func configureTabBar() {
+        
+        //MARK: Home Page
         let homeController = HomePageController()
         homeController.tabBarItem = .init(title: "Home",
                                              image: UIImage(named: "Home"),
@@ -25,6 +27,7 @@ class TabBarController: UITabBarController {
         homeController.title = "Home"
         let homeNavigation = UINavigationController(rootViewController: homeController)
         
+        //MARK: Basket Page
         let basketController = BasketPageController()
         basketController.tabBarItem = .init(title: "Basket",
                                              image: UIImage(named: "Cart"),
@@ -33,7 +36,6 @@ class TabBarController: UITabBarController {
         let basketNavigation = UINavigationController(rootViewController: basketController)
         
         UITabBar.appearance().backgroundColor = .white
-        
         viewControllers = [homeNavigation, basketNavigation]
     }
 

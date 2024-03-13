@@ -25,11 +25,9 @@ class MainCoordinator: Coordinator {
     }
 
     func showHomePage() {
-        let controller = TabBarController()
-        window?.rootViewController = controller
-        window?.makeKeyAndVisible()
-        controller.coordinator = self
-        navigationController.show(controller, sender: nil)
+      let controller = TabBarController()
+      controller.coordinator = self
+      navigationController.show(controller, sender: nil)
     }
 
     func showBasketPage() {
@@ -42,6 +40,12 @@ class MainCoordinator: Coordinator {
         let controller = RestaurantInfoController()
         controller.coordinator = self
         controller.fillData(data: data)
+        navigationController.show(controller, sender: nil)
+    }
+    
+    func showMeals() {
+        let controller = MealsPageController()
+        controller.coordinator = self
         navigationController.show(controller, sender: nil)
     }
 }
