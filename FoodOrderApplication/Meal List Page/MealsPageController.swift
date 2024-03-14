@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RealmSwift
 
 class MealsPageController: UIViewController {
     
@@ -20,8 +21,8 @@ class MealsPageController: UIViewController {
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.dataSource = self
         collection.delegate = self
-//        collection.register(RestaurantsCell.self, forCellWithReuseIdentifier: "\(RestaurantsCell.self)")
-        collection.backgroundColor = .red
+        collection.register(MealsCell.self, forCellWithReuseIdentifier: "\(MealsCell.self)")
+        collection.backgroundColor = .clear
         
         return collection
     }()
@@ -48,6 +49,14 @@ class MealsPageController: UIViewController {
     
     
     var coordinator: MainCoordinator?
+    var realm = try! Realm()
+    var foodList = [MealModel]()
+    var backupFoodList = [MealModel]()
+    var searching = false
+    var user = [User]()
+    let helper = Database()
+    let emailSaved = UserDefaults.standard.string(forKey: "enteredEmail")
+    var tempUser = User()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,11 +71,13 @@ class MealsPageController: UIViewController {
 
 extension MealsPageController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        12
+        foodList.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "\(MealsCell.self)", for: indexPath) as! MealsCell
+        cell.filldata(meals: foodList[indexPath.item])
+        return cell
     }
 }
 
@@ -107,6 +118,62 @@ extension MealsPageController {
     }
     
     @objc fileprivate func searchTextFieldDidChange(_ textField: UITextField) {
-        print(textField.text ?? "test")
+        if let searchText = textField.text, !searchText.isEmpty {
+            searching = true
+            foodList = foodList.filter { food in
+                if let food = food.mealName {
+                    return food.lowercased().contains(searchText.lowercased())
+                }
+                return false
+            }
+        } else {
+            searching = false
+            foodList.removeAll()
+            foodList = backupFoodList
+        }
+        foodCollection.reloadData()
     }
+    
+    func addToBasket(indexPath: IndexPath) {
+        let selectedMeal = self.foodList[indexPath.item]
+        if let existingMeal = tempUser.purchase?.mealList.first(where: { $0.mealName == selectedMeal.mealName }) {
+            // Yemek basketde var idise, sadece sayini yenile
+            do {
+                try self.realm.write {
+                    existingMeal.mealAmount = selectedMeal.mealAmount
+                    tempUser.purchase?.purchaseStatus = "incomplete"
+                }
+                AlertView.showAlert(view: self, title: "Success", message: "Meal added to basket") //ekranda bu gorsenir
+            } catch {
+                print("Error updating meal count: \(error)")
+            }
+        } else {
+            // Eger yemek basketde yoxdusa, sayi nedirse ona uygun baskete elave et
+            let newMeal = MealModel()
+            newMeal.mealName = selectedMeal.mealName
+            newMeal.mealImage = selectedMeal.mealImage
+            newMeal.mealPrice = selectedMeal.mealPrice
+            newMeal.mealContent = selectedMeal.mealContent
+            newMeal.mealAmount = selectedMeal.mealAmount
+            newMeal.mealDeliveryTime = selectedMeal.mealDeliveryTime
+            
+            do {
+                try self.realm.write {
+                    tempUser.purchase?.mealList.append(newMeal)
+                    tempUser.purchase?.purchaseStatus = "incomplete"
+                }
+                AlertView.showAlert(view: self, title: "Success", message: "Meal added to basket")
+            } catch {
+                print("Error adding meal to basket: \(error)")
+            }
+        }
+    }
+    // Update the amount in your data source (foodList) accordingly
+    func updateAmount(indexPath: IndexPath, newAmount: Int) {
+        self.foodList[indexPath.item].mealAmount = newAmount
+        if let cell = foodCollection.cellForItem(at: indexPath) as? MealsCell {
+            cell.mealAmount.text = String(newAmount)
+        }
+    }
+
 }

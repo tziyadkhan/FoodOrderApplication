@@ -17,7 +17,7 @@ class HomePageController: UIViewController {
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
- 
+        
         let collection = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collection.dataSource = self
         collection.delegate = self
@@ -52,10 +52,10 @@ class HomePageController: UIViewController {
     let parser = Parser()
     var searching = false
     var backupItems = [RestaurantModel]()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        print(self.coordinator ?? "bosh")
         configUI()
         configConstraints()
         parseItems()
@@ -63,7 +63,7 @@ class HomePageController: UIViewController {
     }
 }
 
-extension HomePageController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {    
+extension HomePageController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         items.count
@@ -73,11 +73,17 @@ extension HomePageController: UICollectionViewDelegate, UICollectionViewDataSour
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RestaurantsCell", for: indexPath) as! RestaurantsCell
         cell.filldata(data: items[indexPath.item])
         
-        cell.restaurantInfoCallBack = {
-            print(self.coordinator ?? "bosh")
-            self.coordinator?.showRestaurantInfo(data: self.items[indexPath.item])
+        cell.restaurantInfoCallBack = { [weak self] in
+            if let self = self {
+                print(self.coordinator ?? "empty")
+                self.coordinator?.showRestaurantInfo(data: self.items[indexPath.item])
+            }
         }
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        coordinator?.showMeals(meals: self.items[indexPath.item].mealList ?? [MealModel]())
     }
 }
 
@@ -136,19 +142,20 @@ extension HomePageController {
         restaurantCollection.reloadData()
     }
     
-    fileprivate func setRoot() {
-        if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-           let sceneDelegate = scene.delegate as? SceneDelegate {
-            UserDefaults.standard.setValue(false, forKey: "loggedIN") // Setting the flag
-            sceneDelegate.loginPage(windowScene: scene)
+        fileprivate func setRoot() {
+            if let scene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+               let sceneDelegate = scene.delegate as? SceneDelegate {
+                UserDefaults.standard.setValue(false, forKey: "loggedIN") // Setting the flag
+                sceneDelegate.loginPage(windowScene: scene)
+            }
         }
-    }
     
     fileprivate func showAlert(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         let okaybutton = UIAlertAction(title: "Log out", style: .default) { (_) in
-            self.setRoot()
+//            self.coordinator?.start()
+                        self.setRoot()
         }
         let cancelButton = UIAlertAction(title: "Stay", style: .cancel)
         

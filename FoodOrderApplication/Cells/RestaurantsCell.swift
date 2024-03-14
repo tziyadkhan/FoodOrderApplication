@@ -94,6 +94,7 @@ class RestaurantsCell: UICollectionViewCell {
     }
     
     @objc func infoButtonTapped() {
+        restaurantInfoCallBack?()
         print("test")
     }
     

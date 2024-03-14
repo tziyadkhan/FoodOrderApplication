@@ -155,8 +155,9 @@ extension LoginPageController  {
            !loginPassword.isEmpty {
             if userLoginList.contains(where: {$0.email == loginEmail && $0.password == loginPassword}) {
                 UserDefaults.standard.set(loginEmail, forKey: "enteredEmail")
-                self.setRoot()
                 coordinator?.showHomePage()
+                self.setRoot()
+
             } else {
                 AlertView.showAlert(view: self, title: "Failure", message: "Email or password is wrong")
             }

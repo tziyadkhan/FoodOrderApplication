@@ -115,7 +115,7 @@ extension RestaurantInfoController {
     
     private func configConstraints() {
         restaurantImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().inset(60)
+            make.top.equalToSuperview().inset(90)
             make.height.equalTo(220)
             make.left.right.equalToSuperview().inset(12)
         }
@@ -145,7 +145,7 @@ extension RestaurantInfoController {
     }
     
     func fillData(data: RestaurantModel) {
-        restaurantImageView.image = UIImage(named: data.restaurantName ?? "nonnasKitchen")
+        restaurantImageView.image = UIImage(named: data.restaurantImage ?? "nonnasKitchen")
         restaurantNameLabel.text = data.restaurantName
         restaurantRatingLabel.text = data.restaurantRate
         restaurantDistanceLabel.text = data.restaurantDistance

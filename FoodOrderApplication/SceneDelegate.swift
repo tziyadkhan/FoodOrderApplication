@@ -11,14 +11,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     var coordinator: MainCoordinator?
-    var mainCoordinator: MainCoordinator?
-
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        
+        let navigationController = UINavigationController()
+        window = UIWindow(windowScene: windowScene)
+        window?.rootViewController = navigationController
+        window?.makeKeyAndVisible()
+        
+        coordinator = MainCoordinator(navigationController: navigationController)
         
         if UserDefaults.standard.bool(forKey: "loggedIN") {
             homePage(windowScene: windowScene)
@@ -26,13 +29,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             loginPage(windowScene: windowScene)
         }
     }
-
+    
     func homePage(windowScene: UIWindowScene) {
         let navigationController = UINavigationController()
         coordinator = MainCoordinator(navigationController: navigationController)
         window = UIWindow(windowScene: windowScene)
         coordinator?.showHomePage()
-        window?.rootViewController = TabBarController()
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
     }
     
